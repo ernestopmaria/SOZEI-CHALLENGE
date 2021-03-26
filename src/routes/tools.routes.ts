@@ -7,13 +7,17 @@ const tools: Tool[] = []
 toolsRoutes.post("/tools", (request, response) => {
     const { title, link, description, tags } = request.body
 
-    const tool: Tool = {
+    const tool = new Tool();
+
+    Object.assign(tool, {
         title,
         link,
         description,
         tags,
         created_at: new Date
     }
+    )
+
     tools.push(tool)
     return response.status(201).json(tool)
 })

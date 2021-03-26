@@ -9,3 +9,6 @@ yarn add express + suas tipagens
 yarn add typescript -D
 yarn tsc --init
 Yarn add ts-node-dev -D
+
+# UUID
+ yarn add uuid + suas tipagens
