@@ -1,29 +1,20 @@
 import { Router } from 'express';
-import { Tool } from '../model/Tools';
+import { ToolRepository } from '../repository/ToolRepository';
+import { CreateToolService } from '../services/CreateToolService';
 
 const toolsRoutes = Router();
-const tools: Tool[] = []
+const toolRepository = new ToolRepository()
 
 toolsRoutes.post("/tools", (request, response) => {
     const { title, link, description, tags } = request.body
-
-    const tool = new Tool();
-
-    Object.assign(tool, {
-        title,
-        link,
-        description,
-        tags,
-        created_at: new Date
-    }
-    )
-
-    tools.push(tool)
-    return response.status(201).json(tool)
+    const createToolService = new CreateToolService(toolRepository)
+    createToolService.execute({title, link, description, tags })
+    return response.status(201).send()
 })
 
 toolsRoutes.get("/tools", (request, response) => {
-    return response.status(200).json(tools)
+    const all = toolRepository.list()
+    return response.status(200).json(all)
 })
 
 toolsRoutes.get("/tools/:tag", (request, response) => {
