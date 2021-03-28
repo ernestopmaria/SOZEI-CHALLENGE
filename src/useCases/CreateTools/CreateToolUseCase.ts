@@ -1,4 +1,4 @@
-import { IToolsRepository } from "../repository/IToolsRepository"
+import { IToolsRepository } from "../../repository/IToolsRepository"
 
 
 interface IResquest{
@@ -8,7 +8,7 @@ interface IResquest{
     tags:string
 }
 
-class CreateToolService{
+class CreateToolUseCase{
     constructor(private toolRepository:IToolsRepository){}
 
     execute({title, link, description,tags}:IResquest):void{
@@ -22,4 +22,4 @@ class CreateToolService{
     }
 }
 
-export {CreateToolService}
+export {CreateToolUseCase}

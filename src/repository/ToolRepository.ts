@@ -34,9 +34,23 @@ class ToolRepository implements IToolsRepository{
 
         return tool
     }
+
+    findByTags(tag:string){
+        const tags = this.tools.filter(tool => tool.tags.includes(tag))
+        return tags
+    }
+
+
+
+    deleteTools(id:string):void{
+        const ChecktoolsId = this.tools.findIndex(tool => tool.id === id)
+        if (ChecktoolsId === -1) {
+            throw new Error("tools does not exists" )
+        }
+       this.tools.splice(ChecktoolsId, 1)    
+
+    }
 }
-
-
 
 
 

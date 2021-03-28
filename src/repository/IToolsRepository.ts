@@ -12,6 +12,8 @@ interface IToolsRepository{
     findByTitle(title:string):Tool;
     list():Tool[];
     create({title, link, description, tags}:ICreateToolsDTO):void
+    findByTags(tags:string):Tool[];
+    deleteTools(id:string):void;
 }
 
 export {IToolsRepository, ICreateToolsDTO}
