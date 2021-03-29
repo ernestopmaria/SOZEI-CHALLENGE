@@ -1,0 +1,59 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Tools Management Documentation",
+        "description": "this is an API for tools management",
+        "version": "1.0.0",
+        "contact": {
+            "email": "ernestomaria93@gmail.com"
+        }
+    },
+    "paths": {
+        "/tools": {
+            "post": {
+                "tags": [
+                    "Tools"
+                ],
+                "summary": "Create a tool",
+                "description": "Creating a new tool",
+                "requestBody": {
+                    "content": {
+                        "aplication/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "link": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "tags": {
+                                        "type": "string"
+                                    },
+                                    "example": {
+                                        "title": "Word",
+                                        "link": "https//:example.com",
+                                        "description": "https//:example.com",
+                                        "tags": "office"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "response": {
+                        "201": {
+                            "description": "Created"
+                        },
+                        "500": {
+                            "description": "Tools already exists"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

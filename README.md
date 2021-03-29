@@ -12,3 +12,6 @@ Yarn add ts-node-dev -D
 
 # UUID
  yarn add uuid + suas tipagens
+
+# SWAGGER FERRAMENTA DE DOCUMENTAÇÃO DE API
+yarn add swagger-ui-express + suas tipagens
