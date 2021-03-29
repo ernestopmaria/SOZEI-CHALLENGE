@@ -1,64 +1,65 @@
-import { Tool } from '../../model/Tools'
+import { Tool } from '../../entities/Tools'
+
+
 import { ICreateToolsDTO, IToolsRepository } from '../IToolsRepository';
 
-
+import { getRepository, Repository } from 'typeorm';
 class ToolRepository implements IToolsRepository {
-    private tools: Tool[]
 
-    private static INSTANCE: ToolRepository
+    private repository: Repository<Tool>
 
-    private constructor() {
-        this.tools = [];
+    // private static INSTANCE: ToolRepository
+
+    constructor() {
+        this.repository = getRepository(Tool)
     }
 
-    public static getInstance(): ToolRepository {
-        if (!ToolRepository.INSTANCE) {
-            ToolRepository.INSTANCE = new ToolRepository()
-        }
-        return ToolRepository.INSTANCE;
-    }
-
-    create({ title, link, description, tags }: ICreateToolsDTO): void {
-        const tool = new Tool();
-
-        Object.assign(tool, {
+    /*   public static getInstance(): ToolRepository {
+          if (!ToolRepository.INSTANCE) {
+              ToolRepository.INSTANCE = new ToolRepository()
+          }
+          return ToolRepository.INSTANCE;
+      }
+   */
+    async create({ title, link, description, tags }: ICreateToolsDTO): Promise<void> {
+        const tool = this.repository.create({
             title,
             link,
             description,
             tags,
-            created_at: new Date
-        });
+        })
 
-        this.tools.push(tool)
+        await this.repository.save(tool)
 
 
     }
 
-    list(): Tool[] {
-        return this.tools
+    async list(): Promise<Tool[]> {
+        const tools = await this.repository.find()
+        return tools
     }
 
-    findByTitle(title: string) {
-        const tool = this.tools.find(tool => tool.title === title)
+    async findByTitle(title: string): Promise<Tool> {
+        const tool = await this.repository.findOne({ title })
 
         return tool
     }
 
-    findByTags(tag: string) {
-        const tags = this.tools.filter(tool => tool.tags.includes(tag))
-        return tags
-    }
-
-
-
-    deleteTools(id: string): void {
-        const ChecktoolsId = this.tools.findIndex(tool => tool.id === id)
-        if (ChecktoolsId === -1) {
-            throw new Error("tools does not exists")
-        }
-        this.tools.splice(ChecktoolsId, 1)
-
-    }
+    /*  findByTags(tag: string) {
+         const tags = this.repository.find(tool => tool.tags.includes(tag))
+         return tags
+     }
+ 
+ 
+ 
+     async deleteTools(id: string): Promise<void> {
+         const ChecktoolsId = await this.repository.find(tool => tool.id === id)
+         if (ChecktoolsId === -1) {
+             throw new Error("tools does not exists")
+         }
+         this.tools.splice(ChecktoolsId, 1)
+ 
+     } */
 }
 
 

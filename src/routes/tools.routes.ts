@@ -1,21 +1,21 @@
 import { Router } from 'express';
 import { ToolRepository } from '../repository/implementation/ToolRepository';
-import { createToolController } from '../useCases/CreateTools';
+import createToolController from '../useCases/CreateTools';
 import { listToolsController } from '../useCases/ListTools';
 
 
 const toolsRoutes = Router();
-const toolRepository = ToolRepository.getInstance()
+//const toolRepository = new ToolRepository()
 
 toolsRoutes.post("/tools", (request, response) => {
-    return createToolController.handle(request, response)
+    return createToolController().handle(request, response)
 })
 
 toolsRoutes.get("/tools", (request, response) => {
     return listToolsController.handler(request, response)
 })
 
-toolsRoutes.get("/tools/:tag", (request, response) => {
+/* toolsRoutes.get("/tools/:tag", (request, response) => {
     const { tag } = request.params
     const tagSearch = toolRepository.findByTags(tag)
 
@@ -30,6 +30,6 @@ toolsRoutes.delete("/tools/:id", (request, response) => {
     const { id } = request.params
     toolRepository.deleteTools(id)
     return response.status(204).send()
-})
+}) */
 
 export { toolsRoutes }

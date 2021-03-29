@@ -5,7 +5,7 @@ import { ListToolsUseCase } from "./ListToolsUseCase";
 
 
 
-const toolsRepository = ToolRepository.getInstance()
+const toolsRepository = null
 const listToolsUseCase = new ListToolsUseCase(toolsRepository)
 const listToolsController = new ListToolController(listToolsUseCase)
 

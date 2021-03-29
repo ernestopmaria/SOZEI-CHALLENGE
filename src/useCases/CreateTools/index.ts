@@ -4,9 +4,10 @@ import { CreateToolUseCase } from "./CreateToolUseCase";
 
 
 
+export default (): CreateToolsController => {
+    const toolRepository = new ToolRepository();
+    const createToolUseCase = new CreateToolUseCase(toolRepository)
+    const createToolController = new CreateToolsController(createToolUseCase)
 
-const toolRepository = ToolRepository.getInstance();
-const createToolUseCase = new CreateToolUseCase(toolRepository)
-const createToolController = new CreateToolsController(createToolUseCase)
-
-export { createToolController }
+    return createToolController
+}

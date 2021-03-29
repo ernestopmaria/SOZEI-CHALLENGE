@@ -15,3 +15,6 @@ Yarn add ts-node-dev -D
 
 # SWAGGER FERRAMENTA DE DOCUMENTAÇÃO DE API
 yarn add swagger-ui-express + suas tipagens
+
+# Configuração com a BD
+ yarn add typeorm pg
