@@ -18,7 +18,7 @@
                 "description": "Creating a new tool",
                 "requestBody": {
                     "content": {
-                        "aplication/json": {
+                        "application/json": {
                             "schema": {
                                 "type": "object",
                                 "properties": {
@@ -33,24 +33,131 @@
                                     },
                                     "tags": {
                                         "type": "string"
-                                    },
-                                    "example": {
-                                        "title": "Word",
-                                        "link": "https//:example.com",
-                                        "description": "https//:example.com",
-                                        "tags": "office"
+                                    }
+                                },
+                                "example": {
+                                    "title": "Word",
+                                    "link": "https//:example.com",
+                                    "description": "https//:example.com",
+                                    "tags": [
+                                        "office",
+                                        "Books"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "500": {
+                        "description": "Tools already exists"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Tools"
+                ],
+                "summary": "list all Tools",
+                "description": "list all Tools",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "types": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "title": {
+                                                "type": "string"
+                                            },
+                                            "link": {
+                                                "type": "string"
+                                            },
+                                            "description": {
+                                                "type": "string"
+                                            },
+                                            "tags": {
+                                                "type": "string"
+                                            }
+                                        }
                                     }
                                 }
                             }
                         }
-                    },
-                    "response": {
-                        "201": {
-                            "description": "Created"
-                        },
-                        "500": {
-                            "description": "Tools already exists"
+                    }
+                }
+            }
+        },
+        "/tools/{tag}": {
+            "get": {
+                "tags": [
+                    "Tools"
+                ],
+                "parameters": {
+                    "in": "path",
+                    "name": "tag",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                "summary": "filter the tool",
+                "description": "filter the tools",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "types": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "title": {
+                                                "type": "string"
+                                            },
+                                            "link": {
+                                                "type": "string"
+                                            },
+                                            "description": {
+                                                "type": "string"
+                                            },
+                                            "tags": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
+                    }
+                }
+            }
+        },
+        "/tools/{id}": {
+            "delete": {
+                "tags": [
+                    "Tools"
+                ],
+                "parameters": {
+                    "in": "path",
+                    "name": "id",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                "summary": "delete the tool",
+                "description": "delete a tools",
+                "responses": {
+                    "200": {
+                        "description": "Success"
                     }
                 }
             }
