@@ -1,35 +1,30 @@
 import { Router } from 'express';
-import { ToolRepository } from '../repository/implementation/ToolRepository';
-import createToolController from '../useCases/CreateTools';
-import { listToolsController } from '../useCases/ListTools';
+import { CreateTagsController } from '../useCases/CreateTags/CreateTagsController';
+import { CreateToolsController } from '../useCases/CreateTools/CreateToolsController';
+import { DeleteToolController } from '../useCases/DeleteTools/DeleteToolsController';
+import { ListTagController } from '../useCases/ListTags/ListTagsController';
+import { ListToolController } from '../useCases/ListTools/ListToolsController';
+
+
 
 
 const toolsRoutes = Router();
-//const toolRepository = new ToolRepository()
+const createToolController = new CreateToolsController()
+const listToolsController = new ListToolController()
+const deleteToolsController = new DeleteToolController()
+const createTagsControler = new CreateTagsController()
+const listTagsController = new ListTagController()
 
-toolsRoutes.post("/tools", (request, response) => {
-    return createToolController().handle(request, response)
-})
 
-toolsRoutes.get("/tools", (request, response) => {
-    return listToolsController.handler(request, response)
-})
+toolsRoutes.post("/tools", createToolController.handle)
 
-/* toolsRoutes.get("/tools/:tag", (request, response) => {
-    const { tag } = request.params
-    const tagSearch = toolRepository.findByTags(tag)
+toolsRoutes.get("/tools",listToolsController.handle)
 
-    if (!tagSearch.length) {
-        return response.status(401).json({ message: "tools not found" })
-    }
+toolsRoutes.delete("/tools/:id", deleteToolsController.handle) 
 
-    return response.status(200).json({ tagSearch })
-})
 
-toolsRoutes.delete("/tools/:id", (request, response) => {
-    const { id } = request.params
-    toolRepository.deleteTools(id)
-    return response.status(204).send()
-}) */
+toolsRoutes.post("/tools/tag", createTagsControler.handle)
+
+toolsRoutes.get("/tools/tag/:name",listTagsController.handle)
 
 export { toolsRoutes }

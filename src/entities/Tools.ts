@@ -1,5 +1,7 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn } from 'typeorm';
 import { v4 as uuidV4 } from 'uuid'
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryColumn } from 'typeorm';
+import { Tag } from './Tags';
+
 
 @Entity('tools')
 class Tool {
@@ -16,8 +18,8 @@ class Tool {
     @Column()
     description: string;
 
-    @Column()
-    tags: string
+    @OneToMany(type=>Tag, tool=>Tool , {eager:true})
+    tags:Tag[]
 
     @CreateDateColumn()
     created_at: Date

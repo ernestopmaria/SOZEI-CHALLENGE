@@ -1,15 +1,18 @@
+import { inject, injectable } from "tsyringe";
 import { Tool } from "../../entities/Tools";
 import { IToolsRepository } from "../../repository/IToolsRepository";
 
+@injectable()
 class ListToolsUseCase {
+    constructor(
+      @inject('ToolRepository')
+      private toolRepository: IToolsRepository) { }
 
-    constructor(private toolRepository: IToolsRepository) { }
-
-    /*  execute(): Tool[] {
-         const tools = this.toolRepository.list()
+      async execute(): Promise<Tool[]> {
+         const tools = await this.toolRepository.list()
          return tools;
  
-     } */
+     } 
 }
 
 export { ListToolsUseCase }

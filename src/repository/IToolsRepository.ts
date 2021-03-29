@@ -1,19 +1,19 @@
+import { Tag } from "../entities/Tags";
 import { Tool } from "../entities/Tools";
 
 interface ICreateToolsDTO {
     title: string,
     link: string,
     description: string,
-    tags: string
+    tags:Tag[]
 
 }
 
 interface IToolsRepository {
     findByTitle(title: string): Promise<Tool>;
     list(): Promise<Tool[]>;
-    create({ title, link, description, tags }: ICreateToolsDTO): Promise<void>
-    /*  findByTags(tags: string): Promise<Tool[]>;
-     deleteTools(id: string): Promise<void>; */
+    create({ title, link, description }: ICreateToolsDTO): Promise<void>
+     deleteTools(id: string): Promise<void>; 
 }
 
 export { IToolsRepository, ICreateToolsDTO }

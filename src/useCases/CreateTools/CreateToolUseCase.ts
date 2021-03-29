@@ -1,4 +1,5 @@
 import { IToolsRepository } from "../../repository/IToolsRepository"
+import {inject,injectable} from 'tsyringe'
 
 
 interface IResquest {
@@ -8,8 +9,13 @@ interface IResquest {
     tags: string
 }
 
+@injectable()
 class CreateToolUseCase {
-    constructor(private toolRepository: IToolsRepository) { }
+
+
+    constructor(
+        @inject("ToolRepository")
+        private toolRepository: IToolsRepository) { }
 
     async execute({ title, link, description, tags }: IResquest): Promise<void> {
 

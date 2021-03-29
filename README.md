@@ -18,3 +18,6 @@ yarn add swagger-ui-express + suas tipagens
 
 # Configuração com a BD
  yarn add typeorm pg
+
+# Injeção de dependencias
+yarn add tsyringe
