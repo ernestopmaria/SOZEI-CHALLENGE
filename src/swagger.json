@@ -94,7 +94,7 @@
                 }
             }
         },
-        "/tools/{tag}": {
+        "/tools/tag/{name}": {
             "get": {
                 "tags": [
                     "Tools"
@@ -107,7 +107,7 @@
                         "type": "string"
                     }
                 },
-                "summary": "filter the tool",
+                "summary": "filter the tool by tagName",
                 "description": "filter the tools",
                 "responses": {
                     "200": {
@@ -136,6 +136,28 @@
                                 }
                             }
                         }
+                    }
+                }
+            }
+        },
+        "/tools/tag/": {
+            "post": {
+                "tags": [
+                    "Tools"
+                ],
+                "parameters": {
+                    "in": "path",
+                    "name": "tag",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                "summary": "Create Tag",
+                "description": "Create tag",
+                "responses": {
+                    "201": {
+                        "description": "Created"
                     }
                 }
             }
