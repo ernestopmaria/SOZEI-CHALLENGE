@@ -4,9 +4,9 @@
     "port": 5432,
     "username": "postgres",
     "password": "root",
-    "database": "sozei",
+    "database": "sozeiv2",
     "entities": [
-        "./src/entities/*.ts"
+        "./src/module/tools/entities/*.ts"
     ],
     "migrations": [
         "./src/database/migrations/*.ts"

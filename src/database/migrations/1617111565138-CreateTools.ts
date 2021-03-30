@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
-export class CreateTool1617093187753 implements MigrationInterface {
+export class CreateTools1617111565138 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
@@ -9,22 +9,26 @@ export class CreateTool1617093187753 implements MigrationInterface {
                 columns: [
                     {
                         name: 'id',
-                        type: 'varchar',
-                        isPrimary: true,
-                        generationStrategy: 'uuid'
-                    }, {
+                        type: 'uuid',
+                        isPrimary: true
+                    },
+                    {
                         name: 'title',
-                        type: 'varchar',
-                        isNullable: false
-                    }, {
+                        type: 'varchar'
+                    },
+                    {
                         name: 'link',
-                        type: 'varchar',
-
-                    }, {
+                        type: 'varchar'
+                    },
+                    {
                         name: 'description',
-                        type: 'varchar',
-
-                    }, {
+                        type: 'varchar'
+                    },
+                    {
+                        name: 'tags',
+                        type: 'varchar'
+                    },
+                    {
                         name: 'created_at',
                         type: 'timestamp',
                         default: 'now()'
@@ -33,6 +37,7 @@ export class CreateTool1617093187753 implements MigrationInterface {
             })
         )
     }
+
 
     public async down(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.dropTable('tools')
