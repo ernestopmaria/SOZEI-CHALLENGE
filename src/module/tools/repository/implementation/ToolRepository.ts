@@ -9,7 +9,7 @@ class ToolRepository implements IToolsRepository {
         this.repository = getRepository(Tool)
     }
 
-    async create({ title, link, description, tags }: IToolDTO): Promise<Tool> {
+    async create({ title, link, description,tags }: IToolDTO): Promise<Tool> {
         const createTool = this.repository.create({
             title,
             link,
