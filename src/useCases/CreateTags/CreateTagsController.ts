@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import{container} from 'tsyringe'
+import { container } from 'tsyringe'
 import { CreateTagUseCase } from "./CreateTagsUseCase"
 
 class CreateTagsController {
@@ -7,9 +7,9 @@ class CreateTagsController {
 
 
     async handle(request: Request, response: Response): Promise<Response> {
-        const { name, tool } = request.body
+        const { name, toolId } = request.body
         const createToolUseCase = container.resolve(CreateTagUseCase)
-        await createToolUseCase.execute({ name , tool})
+        await createToolUseCase.execute({ name, toolId })
         return response.status(201).send()
     }
 

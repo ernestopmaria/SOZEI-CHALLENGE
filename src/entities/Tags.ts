@@ -9,15 +9,17 @@ class Tag {
     @PrimaryColumn()
     id?: string;
 
+
+
     @Column()
     name: string;
 
     @CreateDateColumn()
     created_at: Date
 
-    @ManyToOne(() => Tool, tool => tool.tags)
-    tool: Tool
-
+    /*  @ManyToOne(() => Tool, tool => tool.tags)
+     tool: string
+  */
     constructor() {
         if (!this.id) {
             this.id = uuidV4()

@@ -18,13 +18,13 @@ const listTagsController = new ListTagController()
 
 toolsRoutes.post("/tools", createToolController.handle)
 
-toolsRoutes.get("/tools",listToolsController.handle)
+toolsRoutes.get("/tools", listToolsController.handle)
 
-toolsRoutes.delete("/tools/:id", deleteToolsController.handle) 
+toolsRoutes.delete("/tools/:id", deleteToolsController.handle)
 
 
 toolsRoutes.post("/tools/tag", createTagsControler.handle)
 
-toolsRoutes.get("/tools/tag/:name",listTagsController.handle)
+toolsRoutes.get("/tools/tag/:name", listTagsController.handle)
 
 export { toolsRoutes }

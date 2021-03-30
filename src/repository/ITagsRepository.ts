@@ -1,7 +1,9 @@
+
 import { Tag } from "../entities/Tags";
 
 interface ICreateTagsDTO {
     name: string,
+    toolId: string
 
 }
 
