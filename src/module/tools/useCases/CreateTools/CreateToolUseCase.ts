@@ -19,8 +19,7 @@ class CreateToolUseCase {
     ) { }
 
     async execute({ title, link, description, tags }: IRequest): Promise<Tool> {
-        const tool = this.toolRepository.create({ title, link, description, tags })
-
+        const tool = await this.toolRepository.create({ title, link, description, tags })
         return tool
     }
 }

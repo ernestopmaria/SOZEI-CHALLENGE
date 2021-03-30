@@ -3,6 +3,6 @@ import { toolsRoutes } from './tools.routes'
 
 const router = Router()
 
-router.use("/", toolsRoutes)
+router.use("/tools", toolsRoutes)
 
 export { router }
