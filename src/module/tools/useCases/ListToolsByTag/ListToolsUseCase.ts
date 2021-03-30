@@ -1,3 +1,4 @@
+
 import { inject, injectable } from 'tsyringe'
 
 import { Tool } from '../../entities/Tool'
@@ -16,7 +17,6 @@ class ListToolsUseCase {
 
   async execute({ tag }: IRequest): Promise<Tool[]> {
     const tools = await this.toolRepository.list(tag)
-
     return tools
   }
 }

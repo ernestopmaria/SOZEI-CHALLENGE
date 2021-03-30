@@ -14,7 +14,7 @@
                 "tags": [
                     "Tools"
                 ],
-                "summary": "Create a tool",
+                "summary": "Create a new tool",
                 "description": "Creating a new tool",
                 "requestBody": {
                     "content": {
@@ -30,12 +30,19 @@
                                     },
                                     "description": {
                                         "type": "string"
+                                    },
+                                    "tags": {
+                                        "type": "string"
                                     }
                                 },
                                 "example": {
-                                    "title": "Word",
+                                    "title": "Express",
                                     "link": "https//:example.com",
-                                    "description": "https//:example.com"
+                                    "description": "https//:example.com",
+                                    "tags": [
+                                        "Node",
+                                        "API"
+                                    ]
                                 }
                             }
                         }
@@ -45,8 +52,8 @@
                     "201": {
                         "description": "Created"
                     },
-                    "500": {
-                        "description": "Tools already exists"
+                    "400": {
+                        "description": "Bad request"
                     }
                 }
             },
@@ -83,11 +90,14 @@
                                 }
                             }
                         }
+                    },
+                    "400": {
+                        "description": "Nothing to show"
                     }
                 }
             }
         },
-        "/tools/tag/{name}": {
+        "/tools/:tag": {
             "get": {
                 "tags": [
                     "Tools"
@@ -100,7 +110,7 @@
                         "type": "string"
                     }
                 },
-                "summary": "filter the tool by tagName",
+                "summary": "filter the tool by tagname",
                 "description": "filter the tools",
                 "responses": {
                     "200": {
@@ -112,7 +122,16 @@
                                     "items": {
                                         "type": "object",
                                         "properties": {
-                                            "name": {
+                                            "title": {
+                                                "type": "string"
+                                            },
+                                            "link": {
+                                                "type": "string"
+                                            },
+                                            "description": {
+                                                "type": "string"
+                                            },
+                                            "tags": {
                                                 "type": "string"
                                             }
                                         }
@@ -120,45 +139,14 @@
                                 }
                             }
                         }
-                    }
-                }
-            }
-        },
-        "/tools/tag/": {
-            "post": {
-                "tags": [
-                    "Tools"
-                ],
-                "summary": "Create Tag",
-                "description": "Create tag",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "name": {
-                                        "type": "string"
-                                    }
-                                },
-                                "example": {
-                                    "name": "Word"
-                                }
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "201": {
-                        "description": "Created"
                     },
                     "400": {
-                        "description": "bad request"
+                        "description": "Nothing to show"
                     }
                 }
             }
         },
-        "/tools/{id}": {
+        "/tools/:id": {
             "delete": {
                 "tags": [
                     "Tools"

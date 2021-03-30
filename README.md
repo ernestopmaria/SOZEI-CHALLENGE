@@ -1,3 +1,9 @@
+# Rodar API
+1º yarn => para a instalação de todas as dependecias mencionadas abaixo
+
+
+2º  yarn dev => para rodar o nosso app
+
 
 # TODOS OS COMANDOS UTILIZADOS PARA A CRIAÇÃO DA API.
 

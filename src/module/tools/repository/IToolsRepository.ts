@@ -10,7 +10,9 @@ interface IToolDTO {
 interface IToolsRepository {
     create({ title, link, description, tags }: IToolDTO): Promise<Tool>
     delete(id: string): Promise<void>
+    listAllTool(): Promise<Tool[]>
     list(tag?: string[]): Promise<Tool[]>
+
 }
 
 export { IToolsRepository, IToolDTO }

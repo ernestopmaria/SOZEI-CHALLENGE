@@ -10,7 +10,23 @@ class ToolRepository implements IToolsRepository {
         this.repository = getRepository(Tool)
     }
 
-    async list(tag?: string): Promise<Tool[]> {
+    async create({ title, link, description, tags }: IToolDTO): Promise<Tool> {
+        const createTool = this.repository.create({
+            title,
+            link,
+            description,
+            tags
+        })
+
+        const tool = await this.repository.save(createTool)
+        return tool
+    }
+
+    async listAllTool(): Promise<Tool[]> {
+        return await this.repository.find()
+    }
+
+    async list(tag?: string[]): Promise<Tool[]> {
         if (tag) {
             const tools = await this.repository.find({
                 select: ['id', 'title', 'link', 'description', 'tags', 'created_at'],
@@ -30,18 +46,7 @@ class ToolRepository implements IToolsRepository {
         await this.repository.delete(id)
     }
 
-    async create({ title, link, description, tags }: IToolDTO): Promise<Tool> {
-        const createTool = this.repository.create({
-            title,
-            link,
-            description,
-            tags
-        })
 
-        const tool = await this.repository.save(createTool)
-
-        return tool
-    }
 }
 
 export { ToolRepository }
