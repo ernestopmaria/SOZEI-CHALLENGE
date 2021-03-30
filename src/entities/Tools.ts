@@ -18,8 +18,8 @@ class Tool {
     @Column()
     description: string;
 
-    /*  @OneToMany(() => Tag, tag => tag.tool, { eager: true })
-     tags: Tag[] */
+    @OneToMany(() => Tag, tag => tag.tool, { eager: true })
+    tags: Tag[]
 
     @CreateDateColumn()
     created_at: Date
