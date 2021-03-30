@@ -1,7 +1,7 @@
 import {MigrationInterface, QueryRunner} from "typeorm";
 
-export class RelationToolandTags1617054419234 implements MigrationInterface {
-    name = 'RelationToolandTags1617054419234'
+export class RelationToolandTags1617093498888 implements MigrationInterface {
+    name = 'RelationToolandTags1617093498888'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`ALTER TABLE "tags" ADD "toolId" character varying`);

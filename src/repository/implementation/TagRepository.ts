@@ -1,24 +1,24 @@
 
 import { getRepository, Repository } from 'typeorm';
 import { Tag } from '../../entities/Tags';
-import {ICreateTagsDTO, ITagsRepository} from '../ITagsRepository'
+import { ICreateTagsDTO, ITagsRepository } from '../ITagsRepository'
 
 
 class TagRepository implements ITagsRepository {
 
-   
-    private repository:Repository<Tag>
+
+    private repository: Repository<Tag>
 
     constructor() {
         this.repository = getRepository(Tag)
 
     }
 
-  
-    async create({name}: ICreateTagsDTO): Promise<void> {   
+
+    async create({ name }: ICreateTagsDTO): Promise<void> {
         const tags = this.repository.create({
-           name 
-           
+            name
+
         })
 
         await this.repository.save(tags)
@@ -27,6 +27,7 @@ class TagRepository implements ITagsRepository {
 
     async listByName(name): Promise<Tag[]> {
         const tools = await this.repository.find(name)
+
         return tools
     }
 

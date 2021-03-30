@@ -1,10 +1,10 @@
-import {inject,injectable} from 'tsyringe'
+import { inject, injectable } from 'tsyringe'
 import { ITagsRepository } from "../../repository/ITagsRepository"
 
 
 interface IResquest {
-   name:string,
-   tool:string
+    name: string,
+    toolId: string
 }
 
 @injectable()
@@ -15,8 +15,8 @@ class CreateTagUseCase {
         @inject("TagRepository")
         private tagsRepository: ITagsRepository) { }
 
-    async execute({ name, tool}: IResquest): Promise<void> {
-        this.tagsRepository.create({name, tool})
+    async execute({ name, toolId }: IResquest): Promise<void> {
+        await this.tagsRepository.create({ name, toolId })
 
     }
 }

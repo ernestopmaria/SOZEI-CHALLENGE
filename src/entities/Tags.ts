@@ -15,8 +15,8 @@ class Tag {
     @CreateDateColumn()
     created_at: Date
 
-    @ManyToOne(type=>Tool, tags=>Tag)
-    tool:Tool
+    @ManyToOne(() => Tool, tool => tool.tags)
+    tool: Tool
 
     constructor() {
         if (!this.id) {

@@ -5,8 +5,9 @@
     "username": "postgres",
     "password": "root",
     "database": "sozei",
-    "entities":[
-        "./src/entities/*.ts"],
+    "entities": [
+        "./src/entities/*.ts"
+    ],
     "migrations": [
         "./src/database/migrations/*.ts"
     ],

@@ -1,11 +1,11 @@
 import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
-export class CreateTools1617023782986 implements MigrationInterface {
+export class CreateTag1617093219713 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
-                name: 'tools',
+                name: 'tags',
                 columns: [
                     {
                         name: 'id',
@@ -13,15 +13,7 @@ export class CreateTools1617023782986 implements MigrationInterface {
                         isPrimary: true,
                         generationStrategy: 'uuid'
                     }, {
-                        name: 'title',
-                        type: 'varchar',
-                        isNullable: false
-                    }, {
-                        name: 'link',
-                        type: 'varchar',
-
-                    }, {
-                        name: 'description',
+                        name: 'name',
                         type: 'varchar',
 
                     }, {
@@ -30,12 +22,11 @@ export class CreateTools1617023782986 implements MigrationInterface {
                         default: 'now()'
                     }
                 ]
-            })
-        )
+            }))
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable('tools')
+        await queryRunner.dropTable('tags')
     }
 
 }
